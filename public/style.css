@@ -1,1 +1,29 @@
 
+h1 {
+    border: 2px solid black;
+    border-radius: 20px;
+}
+
+ul {
+    margin: 20px;
+    padding: 20px;
+    border: 2px solid blue;
+    border-radius: 20px;
+}
+
+li {
+    margin: 20px;
+    padding: 20px;
+    border: 2px solid blue;
+    border-radius: 20px;
+    list-style: none;
+
+}
+
+img {
+    height: 10vh;
+}
+
+ul {
+    padding: 0;
+}

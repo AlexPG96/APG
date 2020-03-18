@@ -4,62 +4,83 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      titulo: 'Shopping Cart',
-      subtitulo: 'Total purchase value:'
+      title: 'Shopping Cart',
+      subtitle: 'Total purchase value:',
+      products: [
+        {
+          image: 'moto.jpg',
+          title: 'Te vendo una moto',
+          description: 'moto',
+          text: 'Te vendo una moto',
+          value: 1000,
+          currency: '€',
+          quantity: 0,
+        },
+        {
+          image: 'coche.jpg',
+          title: 'Te vendo un coche',
+          description: 'moto',
+          text: 'Te vendo un coche',
+          value: 1800,
+          currency: '€',
+          quantity: 0,
+        },
+        {
+          image: 'furgoneta.jpg',
+          title: 'Te vendo una furgoneta',
+          description: 'moto',
+          text: 'Te vendo una furgoneta',
+          value: 3500,
+          currency: '€',
+          quantity: 0,
+        }
+      ]
     }
   }
 
   render() {
-    const {titulo, subtitulo} = this.state;
-
+    const {title, subtitle, products} = this.state;
     return (
       <main>
-        <h1>{titulo}</h1>
-        <h2>{subtitulo}</h2>
-        <Lista />
+        <h1>{title}</h1>
+        <h2>{subtitle}</h2>
+        <Lista products={products} />
       </main>
     )
   }
 }
 
 class Lista extends React.Component {
-  constructor() {
+  constructor(){
     super();
-    this.state = {
-      colection: [
-        {
-          image: 'moto.jpg',
-          title: 'Te vendo una moto',
-          description: 'moto',
-          text: 'description',
-          value: '1.000€'
-        },
-        {
-          image: 'coche.jpg',
-          title: 'Te vendo un coche',
-          text: 'description',
-          value: '1.800€'
-        },
-        {
-          image: 'furgoneta.jpg',
-          title: 'Te vendo una furgoneta',
-          text: 'description',
-          value: '3.500€'
-        }
-
-      ]
-    }
+    this.state = {quantity: 0}
+    this.update = this.update.bind(this)
   }
-  render() {
-    const {colection} = this.state;
 
+  update(){
+    this.setState({quantity: this.state.quantity + 1})
+
+  }
+
+  
+
+  render(){
+    const {products} = this.props;
     return(
       <ul>
-        {colection.map((uno, dos) => {
-          return <li key={dos}><img src={uno.image} alt ={uno.description}/>{uno.title}{uno.text}<button>-</button><button>+</button>{uno.value}
-          </li>
-
-          <input type="button">-</input>
+        {products.map((products, index) => {
+          return (
+          <li key={index}>
+            <img src={products.image} alt={products.description}/>
+            {products.title} ||
+            {products.text} ||
+            <button>-</button> ||
+            {this.state.quantity} ||
+            <button onClick={this.update}>+</button> ||
+            {products.value}
+            {products.currency}
+            </li>
+          )
         })
         }
       </ul>
